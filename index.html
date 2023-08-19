@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="shortcut icon"
+      href="https://guanzhu01.oss-cn-hangzhou.aliyuncs.com/oss90b6f0d5-db9d-f87c-6716-8fac25c08320.png"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,user-scalable=0"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+    />
+    <style>
+      :root {
+        --my-cool-background: #eab903;
+      }
+
+      .box {
+        width: 95vw;
+        margin-left: 2.5vw;
+        margin-top: 2.5vw;
+        border-radius: 2.5vw;
+        padding: 2.5vw;
+        background-color: #fff;
+        border: 1px solid #eee;
+        box-sizing: border-box;
+      }
+      .button {
+        background-color: var(--my-cool-background);
+        height: 10vw;
+        line-height: 10vw;
+        text-align: center;
+        border-radius: 5vw;
+        color: #fff;
+      }
+      .hl {
+        color: var(--my-cool-background);
+      }
+    </style>
+
+    <title>金银手指网址导航手机版</title>
+    <style>
+      .box {
+        font-size: 4vw;
+        position: relative;
+      }
+      body {
+        padding-bottom: 2.5vw;
+      }
+
+      .read-title {
+        font-weight: bolder;
+        font-size: 5vw;
+        text-align: center;
+      }
+
+      .read-title2 {
+        text-align: center;
+      }
+
+      .read-tips {
+        background-color: #ccc;
+        position: absolute;
+        left: 1vw;
+        bottom: 1vw;
+        border-radius: 1.5vw;
+        padding: 0.5vw 2vw;
+      }
+      .web-list {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .web-title {
+        font-weight: bolder;
+        padding-left: 1vw;
+      }
+      .web-item {
+        width: 25%;
+        text-align: center;
+        margin-top: 4vw;
+      }
+      .web-item img {
+        width: 10vw;
+        height: 10vw;
+        object-fit: scale-down;
+      }
+      .beian{
+        font-size: 16px;
+        color: blue;
+        width: 100%;
+        text-align: center;
+        margin-top:10px ;
+        display: inline-block
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- <div
+      id="read_box"
+      onclick="jumper('/fast_reada/')"
+      class="box"
+    >
+      <div class="read-title">热文推荐（阅读A）</div>
+      <div class="read-title2">随机推荐高质量热文</div>
+      <div class="read-tips">广告</div>
+    </div> -->
+    <script id="web_box" type="text/html">
+      <div class="box">
+          <div class="web-title">[$title]</div>
+          <div class="web-list">
+              [$items]
+          </div>
+      </div>
+    </script>
+    <script>
+      window.xhtml_replace = function(id, obj) {
+        var str;
+        if (arguments.length > 2) {
+          str = arguments[2];
+        } else {
+          str = document.querySelector(id).innerHTML;
+        } //优先匹配for循环 兼顾if条件
+        if (typeof str != "string") {
+          return;
+        }
+        var reg_for = /\[for \$(.*?) as \$(.*?) => \$(.*?)\]([\S\s]*?)\[\/for\]/;
+        str = str.replace(reg_for, function(node, key, k, v, inside) {
+          var new_str = "";
+
+          for (var i = 0; i < obj[key].length; i++) {
+            var new_obj = {};
+            new_obj[k] = i;
+            new_obj[v] = obj[key][i]; // Object.assign(new_obj, obj);
+
+            new_str += xhtml_replace(id, new_obj, inside);
+          }
+
+          return new_str;
+        });
+        var reg = new RegExp("\\[\\$(.*?)\\]", "igm"); //i g m是指分别用于指定区分大小写的匹配、全局匹配和多行匹配。
+
+        str = str.replace(reg, function(node, key) {
+          return obj[key];
+        });
+        return str;
+      };
+      function jumper(url) {
+        location.href = url;
+      }
+    </script>
+    <script id="web_item" type="text/html">
+      <div onclick="jumper('[$url]')" class="web-item">
+          <img src="https://fqkk-up.oss-cn-hangzhou.aliyuncs.com/image/index/[$src]" alt="">
+          <p>[$name]</p>
+      </div>
+    </script>
+    <script>
+      var arr = [
+        {
+          title: "高质量购物",
+          item: [
+            {
+              src: "jd.png",
+              name: "京东",
+              url: "https://u.jd.com/YtKk9LW"
+            },
+            {
+              src: "pdd.png",
+              name: "拼多多",
+              url: "https://p.pinduoduo.com/AKB4saLu"
+            },
+            {
+              src: "tb.png",
+              name: "淘宝",
+              url: "https://main.m.taobao.com/"
+            },
+            {
+              src: "xmyp.png",
+              name: "小米有品",
+              url: "https://m.xiaomiyoupin.com/"
+            }
+          ]
+        },
+        {
+          title: "外卖红包",
+          item: [
+            {
+              src: "mtwm.png",
+              name: "美团红包",
+              url: "http://dpurl.cn/7aIiIgvz"
+            },
+            {
+              src: "ele.png",
+              name: "饿了么红包",
+              url:
+                "https://tb.ele.me/wow/alsc/mod/3ba3e78bb37a220f352e6799?e=1&open_type=miniapp&inviterId=6be4616"
+            },
+            {
+              src: "my.png",
+              name: "猫眼电影",
+              url: "https://i.maoyan.com/"
+            },
+            {
+              src: "tpp.png",
+              name: "淘票票",
+              url: "https://m.taopiaopiao.com/"
+            }
+          ]
+        },
+        {
+          title: "全网热搜实时更新",
+          item: [
+            {
+              src: "wb.png",
+              name: "微博热搜",
+              url: "https://s.weibo.com/top/summary/"
+            },
+            {
+              src: "dy.png",
+              name: "抖音热搜",
+              url: "https://tophub.today/n/DpQvNABoNE"
+            },
+            {
+              src: "bi.png",
+              name: "B站热门",
+              url: "https://m.bilibili.com/ranking"
+            },
+            {
+              src: "jlrb.png",
+              name: "今日热榜",
+              url: "https://tophub.today/"
+            }
+          ]
+        },
+        {
+          title: "时事热点",
+          item: [
+            {
+              src: "txnews.png",
+              name: "腾讯新闻",
+              url: "https://xw.qq.com/?f=c_news"
+            },
+            {
+              src: "jrtt.png",
+              name: "今日头条",
+              url: "https://m.toutiao.com/?W2atIF=1"
+            },
+            {
+              src: "sh.png",
+              name: "搜狐网",
+              url: "https://m.sohu.com/"
+            },
+            {
+              src: "gcz.jpeg",
+              name: "观察者",
+              url: "https://m.guancha.cn/"
+            },
+            {
+              src: "ppnews.jpeg",
+              name: "澎湃新闻",
+              url: "https://m.thepaper.cn/"
+            },
+            {
+              src: "sina.png",
+              name: "新浪网",
+              url: "https://sina.cn/?universallink=1"
+            },
+            {
+              src: "bd.png",
+              name: "百度",
+              url: "https://www.baidu.com/"
+            }
+          ]
+        },
+        {
+          title: "极速看电影",
+          item: [
+            {
+              src: "iqi.png",
+              name: "爱奇艺",
+              url: "https://m.iqiyi.com/"
+            },
+            {
+              src: "yk.png",
+              name: "优酷",
+              url: "https://www.youku.com/"
+            },
+            {
+              src: "tx.png",
+              name: "腾讯视频",
+              url: "https://3g.v.qq.com/"
+            },
+            {
+              src: "mgtv.png",
+              name: "芒果TV",
+              url: "https://m.mgtv.com/channel/home/"
+            }
+          ]
+        },
+        {
+          title: "小说推荐",
+          item: [
+            {
+              src: "sq.png",
+              name: "书旗小说",
+              url: "https://m.mgtv.com/channel/home/"
+            },
+            {
+              src: "qd.png",
+              name: "起点小说",
+              url: "https://m.qidian.com/"
+            },
+            {
+              src: "xxsy.png",
+              name: "潇湘书院",
+              url: "https://m.xxsy.net/"
+            },
+            {
+              src: "fl.png",
+              name: "飞卢小说",
+              url: "https://wap.faloo.com/"
+            }
+          ]
+        },
+        {
+          title: "动漫世界",
+          item: [
+            {
+              src: "bi.png",
+              name: "哔哩哔哩",
+              url: "https://m.bilibili.com/"
+            },
+            {
+              src: "kk.png",
+              name: "快看漫画",
+              url: "https://m.kuaikanmanhua.com/"
+            },
+            {
+              src: "txdm.png",
+              name: "腾讯动漫",
+              url: "https://m.ac.qq.com/"
+            },
+            {
+              src: "yyq.jpeg",
+              name: "有妖气",
+              url: "https://m.u17.com/"
+            }
+          ]
+        },
+        {
+          title: "动漫世界",
+          item: [
+            {
+              src: "doyyu.png",
+              name: "斗鱼",
+              url: "https://m.douyu.com/"
+            },
+            {
+              src: "hy.png",
+              name: "虎牙",
+              url: "https://m.huya.com/"
+            },
+            {
+              src: "qedj.jpeg",
+              name: "企鹅电竞",
+              url: "https://cdn.egame.qq.com/pgg-play/module/livelist.html"
+            },
+            {
+              src: "taptap.png",
+              name: "taptap",
+              url: "https://www.taptap.com/"
+            }
+          ]
+        }
+      ];
+      var html = "";
+      for (var i in arr) {
+        var obj = arr[i];
+        obj.items = "";
+        for (var i2 in obj.item) {
+          obj.items += xhtml_replace("#web_item", obj.item[i2]);
+        }
+        html += xhtml_replace("#web_box", obj);
+      }
+      document.write(html);
+      // $("body").append(html);
+      // if (lc == "杭州市") {
+      //   $("#read_box").hide();
+      // }
+    </script>
+    <!-- <a class="beian" href="http://beian.miit.gov.cn/" target="_blank">浙ICP备2022003776号-10</a>  -->
+    <a class="beian" href="http://beian.miit.gov.cn/" target="_blank">浙ICP备2022003776号-11</a> 
+    <!-- <a class="beian" href="http://beian.miit.gov.cn/" target="_blank">浙ICP备2022003776号-12</a> -->
+     <!-- <a class="beian" href="http://beian.miit.gov.cn/" target="_blank">浙ICP备2022003776号-13</a> -->
+    <!-- <a class="beian" href="http://beian.miit.gov.cn/" target="_blank">浙ICP备2022003776号-14</a>  -->
+  </body>
+</html>

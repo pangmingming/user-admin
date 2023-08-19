@@ -1,0 +1,42 @@
+{
+  "name": "admin",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "start": "vue-cli-service serve",
+    "start:prod": "cross-env DEPLOY_ENV=prod  vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "build:prod": "cross-env DEPLOY_ENV=prod  vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "core-js": "^3.6.5",
+    "cos-js-sdk-v5": "^1.4.18",
+    "cos-nodejs-sdk-v5": "^2.12.1",
+    "cross-env": "^7.0.3",
+    "dayjs": "^1.10.6",
+    "element-ui": "^2.4.5",
+    "qrious": "^4.0.2",
+    "underscore": "^1.13.1",
+    "vue": "^2.6.11",
+    "vue-router": "^3.2.0",
+    "vuex": "^3.4.0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-router": "~4.5.0",
+    "@vue/cli-plugin-vuex": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "node-sass": "^4.9.2",
+    "sass-loader": "^7.0.3",
+    "vue-cli-plugin-element": "~1.0.1",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}

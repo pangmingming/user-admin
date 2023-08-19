@@ -1,0 +1,150 @@
+//reset
+body,*{
+  margin:0;
+  padding: 0;
+}
+
+html {
+  font-size: 13px;
+}
+
+a {
+  color: #999;
+}
+
+//colors
+
+$color: (
+  primary: #db9e3f,
+  "white": #fff,
+  "black": #000,
+);
+
+@each $colorKey, $color in $color {
+  .text-#{$colorKey} {
+    color: $color;
+  }
+}
+
+//text
+@each $var in (left, center, right) {
+  .text-#{$var} {
+    text-align: $var;
+  }
+}
+
+//font-size
+
+$base-font-size: 1rem;
+
+$font-sizes: (
+  xs: 0.769,
+  //10px
+    sm: 0.923,
+  //12px
+    md: 1,
+  //13px
+    lg: 1.077,
+  //14px
+    xl: 1.231 //16px,,,,,,,,,,,,,,,,
+);
+@each $sizeKey, $size in $font-sizes {
+  .fs-#{$sizeKey} {
+    font-size: $size * $base-font-size;
+  }
+}
+
+//flex
+
+.d-flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+$flex-jc: (
+  start: flex-start,
+  end: flex-end,
+  center: center,
+  between: space-between,
+  around: space-around,
+);
+@each $key, $value in $flex-jc {
+  .jc-#{$key} {
+    justify-content: $value;
+  }
+}
+
+@each $key, $value in $flex-jc {
+  .al-#{$key} {
+    align-items: $value;
+  }
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.flex-grow-1 {
+  flex-grow: 1;
+}
+
+//spacing
+
+$spacing-types: (
+  m: margin,
+  p: padding,
+);
+$spacing-desctions: (
+  t: top,
+  b: bottom,
+  l: left,
+  r: right,
+);
+$spacing-base-size: 1rem;
+$spacing-sizes: (
+  0: 0,
+  1: 0.25,
+  2: 0.5,
+  3: 1,
+  4: 1.5,
+  5: 3,
+  8: 5,
+  10: 8,
+);
+//m-0,
+
+@each $typesKey, $type in $spacing-types {
+  @each $sizeKey, $size in $spacing-sizes {
+    .#{$typesKey}-#{$sizeKey} {
+      $type: $size * $spacing-base-size;
+    }
+  }
+}
+
+//mx-0 上下 ,my-0 左右
+
+@each $typesKey, $type in $spacing-types {
+  @each $sizeKey, $size in $spacing-sizes {
+    .#{$typesKey}x-#{$sizeKey} {
+      #{$type}-left: $size * $spacing-base-size;
+      #{$type}-right: $size * $spacing-base-size;
+    }
+    .#{$typesKey}y-#{$sizeKey} {
+      #{$type}-top: $size * $spacing-base-size;
+      #{$type}-bottom: $size * $spacing-base-size;
+    }
+  }
+}
+
+//mt-1
+@each $typesKey, $type in $spacing-types {
+  @each $desctionsKey, $desction in $spacing-desctions {
+    @each $sizeKey, $size in $spacing-sizes {
+      .#{$typesKey}#{$desctionsKey}-#{$sizeKey} {
+        #{$type}-#{$desction}: $size * $spacing-base-size;
+      }
+    }
+  }
+}
